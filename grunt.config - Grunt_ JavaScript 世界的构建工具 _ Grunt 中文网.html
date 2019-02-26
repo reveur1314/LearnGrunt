@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://www.gruntjs.net/api/grunt.config -->
+<html lang="zh-CN" prefix="og: http://ogp.me/ns#" itemscope="" itemtype="http://schema.org/WebPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>grunt.config - Grunt: JavaScript 世界的构建工具 | Grunt 中文网</title><meta name="description" content="Grunt 是基于 Node.js 的项目构建工具。它可以自动运行你所设定的任务。Grunt 拥有数量庞大的插件，几乎任何你所要做的事情都可以用 Grunt 实现。"><meta name="keywords" content="Grunt, Gruntjs, 项目构建工具, web前端开发, HTML,CSS,JavaScript"><link rel="stylesheet" href="./grunt.config - Grunt_ JavaScript 世界的构建工具 _ Grunt 中文网_files/main.css"><link rel="apple-touch-icon" href="https://www.gruntjs.net/img/favicons/apple-touch-icon.png" sizes="180x180"><link rel="icon" type="image/png" href="https://www.gruntjs.net/img/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="https://www.gruntjs.net/img/favicons/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="https://www.gruntjs.net/img/favicons/manifest.json"><link rel="mask-icon" href="https://www.gruntjs.net/img/favicons/safari-pinned-tab.svg" color="#e48632"><link rel="shortcut icon" href="https://www.gruntjs.net/img/favicons/favicon.ico" type="image/x-icon"><meta name="msapplication-config" content="/img/favicons/browserconfig.xml"><meta name="theme-color" content="#e48632"><meta property="og:title" content="grunt.config - Grunt: JavaScript 世界的构建工具 | Grunt 中文网"><meta property="og:type" content="website"><meta property="og:url" content="https://gruntjs.com/"><meta property="og:image" content="https://gruntjs.com/img/og.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="256"><meta property="og:image:height" content="256"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@gruntjs"><meta name="twitter:site" content="@gruntjs"><meta name="twitter:title" content="grunt.config - Grunt: JavaScript 世界的构建工具 | Grunt 中文网"><meta itemprop="name" content="Grunt"><meta itemprop="image" content="/img/og.png"><link href="https://www.gruntjs.net/rss" rel="alternate" title="Grunt Blog Feed" type="application/atom+xml"><script src="./grunt.config - Grunt_ JavaScript 世界的构建工具 _ Grunt 中文网_files/hm.js.下载"></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9630d143ce27a7b287648e78370a3186";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head><body class="page-api page-secondary"><div class="navbar navbar-inverse"><div class="navbar-inner"><div class="container"><a class="brand" href="https://www.gruntjs.net/"><span class="logo"><img src="./grunt.config - Grunt_ JavaScript 世界的构建工具 _ Grunt 中文网_files/grunt-logo.png" alt="Grunt logo" width="360" height="424"></span></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="https://www.gruntjs.net/"><i></i><span>首页</span></a></li><li><a href="https://www.gruntjs.net/getting-started"><i class="icon-arrow-right"></i><span>快速入门</span></a></li><li><a href="https://www.gruntjs.net/configuring-tasks"><i class="icon-cog"></i><span>配置任务</span></a></li><li><a href="https://www.gruntjs.net/getting-started"><i class="icon-file-text"></i><span>中文文档</span></a></li><li><a href="https://www.gruntjs.net/plugins"><i class="icon-power-cord"></i><span>插件列表</span></a></li></ul><form class="navbar-search pull-right"><input class="search-query" type="text" placeholder="Search"></form></div><!--.nav-collapse--></div></div></div><div class="content"><div class="container grunt.config"><div class="row-fluid"><div class="span9 page"><div class="hero-unit"><h1>grunt.config</h1><p>从 <code>Gruntfile</code> 中获取针对当前项目的配置数据。</p>
+<p>注意，任何标记为 ☃ (unicode snowman) 的方法也是可以直接通过 <code>grunt</code> 对象访问的；任何标记为 ☆ (white star) 的方法都可以在task内部通过 <code>this</code> 对象访问的。请知晓。</p>
+<h2>初始化配置数据</h2>
+<p><em>注意，下面列出的方法也可以通过 <code>grunt</code> 对象访问，访问形式为 <code>grunt.initConfig</code>。</em></p>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.init" id="grunt.config.init"></a>grunt.config.init ☃</h3>
+<p>为当前项目初始化一个配置对象。其中传入的 <code>configObject</code> 参数可以用在后续的task中，可以通过 <code>grunt.config</code> 方法访问。几乎每个项目的 <code>Gruntfile</code> 都会调用此方法。</p>
+<pre><code class="lang-js">grunt.config.init(configObject)</code></pre>
+<p>注意，任何 <code>&lt;% %&gt;</code> 模板字符串只会在取到配置数据后才被处理。</p>
+<p>下面的案例展示了针对 <a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件</a> 中的 <code>jshint</code> task的配置数据：</p>
+<pre><code class="lang-js">grunt.config.init({
+  <span class="hljs-attr">jshint</span>: {
+    <span class="hljs-attr">all</span>: [<span class="hljs-string">'lib/*.js'</span>, <span class="hljs-string">'test/*.js'</span>, <span class="hljs-string">'Gruntfile.js'</span>]
+  }
+});</code></pre>
+<p>查看 <a href="https://www.gruntjs.net/getting-started">Getting started</a> 指南可以获取更多的配置案例。</p>
+<p><em>此方法还可以以  <code>grunt.initConfig</code> 的形式访问。</em></p>
+<h2>获取配置数据</h2>
+<p>The following methods allow Grunt configuration data to be accessed either via dot-delimited string like <code>'pkg.author.name'</code> or via array of property name parts like <code>['pkg', 'author', 'name']</code>.</p>
+<p>Note that if a specified property name contains a <code>.</code> dot, it must be escaped with a literal backslash, eg. <code>'concat.dist/built\\.js'</code>. If an array of parts is specified, Grunt will handle the escaping internally with the <code>grunt.config.escape</code> method.</p>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config" id="grunt.config"></a>grunt.config</h3>
+<p>从项目的 Grunt 配置中获取或者设置一个值。这个方法作为其他方法的别名；如果传递两个参数，<code>grunt.config.set</code>被调用，另一方面<code>grunt.config.get</code>也被调用。Get or set a value from the project's grunt configuration. This method serves as an alias to other methods; if two arguments are passed, <code>grunt.config.set</code> is called, otherwise <code>grunt.config.get</code> is called.</p>
+<pre><code class="lang-js">grunt.config([prop [, value]])</code></pre>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.get" id="grunt.config.get"></a>grunt.config.get</h3>
+<p>Get a value from the project's Grunt configuration. If <code>prop</code> is specified, that property's value is returned, or <code>null</code> if that property is not defined. If <code>prop</code> isn't specified, a copy of the entire config object is returned. Templates strings will be recursively processed using the <code>grunt.config.process</code> method.</p>
+<pre><code class="lang-js">grunt.config.get([prop])</code></pre>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.process" id="grunt.config.process"></a>grunt.config.process</h3>
+<p>Process a value, recursively expanding <code>&lt;% %&gt;</code> templates (via the <code>grunt.template.process</code> method) in the context of the Grunt config, as they are encountered. this method is called automatically by <code>grunt.config.get</code> but <em>not</em> by <code>grunt.config.getRaw</code>.</p>
+<pre><code class="lang-js">grunt.config.process(value)</code></pre>
+<p>If any retrieved value is entirely a single <code>'&lt;%= foo %&gt;'</code> or <code>'&lt;%= foo.bar %&gt;'</code> template string, and the specified <code>foo</code> or <code>foo.bar</code> property is a non-string (and not <code>null</code> or <code>undefined</code>) value, it will be expanded to the <em>actual</em> value. That, combined with grunt's task system automatically flattening arrays, can be extremely useful.</p>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.getraw" id="grunt.config.getraw"></a>grunt.config.getRaw</h3>
+<p>Get a raw value from the project's Grunt configuration, without processing <code>&lt;% %&gt;</code> template strings. If <code>prop</code> is specified, that property's value is returned, or <code>null</code> if that property is not defined. If <code>prop</code> isn't specified, a copy of the entire config object is returned.</p>
+<pre><code class="lang-js">grunt.config.getRaw([prop])</code></pre>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.set" id="grunt.config.set"></a>grunt.config.set</h3>
+<p>给当前项目的 Grunt 配置中的某个属性设置一个值。</p>
+<pre><code class="lang-js">grunt.config.set(prop, value)</code></pre>
+<p>注意，任何 <code>&lt;% %&gt;</code> 模板字符串只会在取到配置数据后才被处理。</p>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.escape" id="grunt.config.escape"></a>grunt.config.escape</h3>
+<p>忽略给定的<code>propString</code>中的<code>.</code>点号。这应该用于包含点号的属性名。Escape <code>.</code> dots in the given <code>propString</code>. This should be used for property names that contain dots.</p>
+<pre><code class="lang-js">grunt.config.escape(propString)</code></pre>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.merge" id="grunt.config.merge"></a>grunt.config.merge</h3>
+<p><em>Added in 0.4.5</em></p>
+<p>Recursively merges properties of the specified <code>configObject</code> into the current project configuration. Array and plain object properties are merged recursively while other value types are overridden.</p>
+<pre><code class="lang-js">grunt.config.merge(configObject)</code></pre>
+<p>You can use this method to append configuration options, targets, etc., to already defined tasks, for example:</p>
+<pre><code class="lang-js">grunt.config.merge({
+  <span class="hljs-attr">watch</span>: {
+    <span class="hljs-attr">files</span>: [<span class="hljs-string">"path/to/files"</span>],
+    <span class="hljs-attr">tasks</span>: [<span class="hljs-string">"task"</span>]
+  }
+});</code></pre>
+<p>Array values are merged based on their index. Consider the following code:</p>
+<pre><code class="lang-js">grunt.initConfig({
+  <span class="hljs-attr">jshint</span>: {
+    <span class="hljs-attr">files</span>: [<span class="hljs-string">'Gruntfile.js'</span>, <span class="hljs-string">'src/**/*.js'</span>],
+  }
+);
+
+<span class="hljs-keyword">var</span> config = {
+  <span class="hljs-attr">jshint</span>: {
+    <span class="hljs-attr">files</span>: [<span class="hljs-string">'hello.js'</span>],
+  }
+};
+
+grunt.config.merge(config);</code></pre>
+<p>It'll result in the configuration shown below:</p>
+<pre><code class="lang-js">jshint: {
+  <span class="hljs-attr">files</span>: [<span class="hljs-string">'hello.js'</span>, <span class="hljs-string">'src/**/*.js'</span>],
+}</code></pre>
+<p>In conclusion, the first value of the <code>files</code> array defined in the <code>config</code> variable (<code>hello.js</code>) overriddes the first value specified in the <code>initConfig</code> configuration call (<code>Gruntfile.js</code>).</p>
+<h2><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#requiring-config-data" id="requiring-config-data"></a>Requiring Config Data</h2>
+<p><em>注意，下面列出的方法都可以在task内部通过 <code>this</code> 对象访问，访问形式为 <code>this.requiresConfig</code>。</em></p>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.config#grunt.config.requires" id="grunt.config.requires"></a>grunt.config.requires ☆</h3>
+<p>如果需要的配置属性有一个或多个不存在、值为<code>null</code> 或 <code>undefined</code>，当前task将失败。此方法可以指定一个或多个字符串、配置属性数组作为参数。</p>
+<pre><code class="lang-js">grunt.config.requires(prop [, prop [, ...]])</code></pre>
+<p><em>此方法在task内部以 <code>this.requiresConfig</code> 形式调用。</em></p>
+<div class="end-link">Found an error in the documentation?
+<a href="https://github.com/gruntjs/grunt-docs/issues">File an issue</a>.</div></div></div><div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header"><i class="icon-cog"></i><span>API</span></li><li><a href="https://www.gruntjs.net/api/grunt">grunt</a></li><li><a class="active" href="https://www.gruntjs.net/api/grunt.config">grunt.config</a></li><li><a href="https://www.gruntjs.net/api/grunt.event">grunt.event</a></li><li><a href="https://www.gruntjs.net/api/grunt.fail">grunt.fail</a></li><li><a href="https://www.gruntjs.net/api/grunt.file">grunt.file</a></li><li><a href="https://www.gruntjs.net/api/grunt.log">grunt.log</a></li><li><a href="https://www.gruntjs.net/api/grunt.option">grunt.option</a></li><li><a href="https://www.gruntjs.net/api/grunt.task">grunt.task</a></li><li><a href="https://www.gruntjs.net/api/grunt.template">grunt.template</a></li><li><a href="https://www.gruntjs.net/api/grunt.util">grunt.util</a></li></ul><ul class="nav nav-list"><li class="nav-header"><span>Other</span></li><li><a href="https://www.gruntjs.net/api/inside-tasks">深入任务内幕</a></li><li><a href="https://www.gruntjs.net/api/exit-codes">退出码</a></li></ul></div></div></div></div></div><footer class="grunt-footer"><div class="inner"><div class="container"><ul class="pull-right"><li><a href="https://www.gruntjs.net/blog">博客</a></li><li><a href="https://www.gruntjs.net/upgrading-from-0.3-to-0.4">升级指南</a></li><li><a href="https://www.gruntjs.net/contributing">贡献</a></li><li><a href="https://www.gruntjs.net/development-team">项目组</a></li><li class="social"><a href="https://github.com/gruntjs/" title="Grunt on GitHub"><span class="icon-github"></span></a></li><li class="social"><a href="https://twitter.com/gruntjs/" title="Grunt on Twitter"><span class="icon-twitter"></span></a></li><li class="social"><a href="https://www.gruntjs.net/rss" title="Grunt blog RSS feed"><span class="icon-rss"></span></a></li></ul><ul class="pull-left"><li><a href="http://www.miibeian.gov.cn/" target="_blank"> 冀ICP备14002930号</a></li></ul></div></div><div class="inner"><div class="container"><ul class="pull-right"><li><span>友链：</span></li><li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li><li><a href="https://www.jquery123.com/" target="_blank">jQuery中文文档</a></li><li><a href="https://www.reactjscn.com/" target="_blank">React中文网</a></li><li><a href="https://www.webpackjs.com/" target="_blank">Webpack中文网</a></li><li><a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a></li><li><a href="https://www.parceljs.cn/" target="_blank">Parcel中文网</a></li><li><a href="https://www.sasscss.com/" target="_blank">SASS中文网</a></li><li><a href="https://www.npmjs.com.cn/" target="_blank">NPM中文网</a></li><li><a href="https://www.rollupjs.com/" target="_blank">Rollup中文网</a></li></ul></div></div></footer></body></html>

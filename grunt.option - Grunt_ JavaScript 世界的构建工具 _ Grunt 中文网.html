@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://www.gruntjs.net/api/grunt.option -->
+<html lang="zh-CN" prefix="og: http://ogp.me/ns#" itemscope="" itemtype="http://schema.org/WebPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>grunt.option - Grunt: JavaScript 世界的构建工具 | Grunt 中文网</title><meta name="description" content="Grunt 是基于 Node.js 的项目构建工具。它可以自动运行你所设定的任务。Grunt 拥有数量庞大的插件，几乎任何你所要做的事情都可以用 Grunt 实现。"><meta name="keywords" content="Grunt, Gruntjs, 项目构建工具, web前端开发, HTML,CSS,JavaScript"><link rel="stylesheet" href="./grunt.option - Grunt_ JavaScript 世界的构建工具 _ Grunt 中文网_files/main.css"><link rel="apple-touch-icon" href="https://www.gruntjs.net/img/favicons/apple-touch-icon.png" sizes="180x180"><link rel="icon" type="image/png" href="https://www.gruntjs.net/img/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="https://www.gruntjs.net/img/favicons/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="https://www.gruntjs.net/img/favicons/manifest.json"><link rel="mask-icon" href="https://www.gruntjs.net/img/favicons/safari-pinned-tab.svg" color="#e48632"><link rel="shortcut icon" href="https://www.gruntjs.net/img/favicons/favicon.ico" type="image/x-icon"><meta name="msapplication-config" content="/img/favicons/browserconfig.xml"><meta name="theme-color" content="#e48632"><meta property="og:title" content="grunt.option - Grunt: JavaScript 世界的构建工具 | Grunt 中文网"><meta property="og:type" content="website"><meta property="og:url" content="https://gruntjs.com/"><meta property="og:image" content="https://gruntjs.com/img/og.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="256"><meta property="og:image:height" content="256"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@gruntjs"><meta name="twitter:site" content="@gruntjs"><meta name="twitter:title" content="grunt.option - Grunt: JavaScript 世界的构建工具 | Grunt 中文网"><meta itemprop="name" content="Grunt"><meta itemprop="image" content="/img/og.png"><link href="https://www.gruntjs.net/rss" rel="alternate" title="Grunt Blog Feed" type="application/atom+xml"><script src="./grunt.option - Grunt_ JavaScript 世界的构建工具 _ Grunt 中文网_files/hm.js.下载"></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9630d143ce27a7b287648e78370a3186";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head><body class="page-api page-secondary"><div class="navbar navbar-inverse"><div class="navbar-inner"><div class="container"><a class="brand" href="https://www.gruntjs.net/"><span class="logo"><img src="./grunt.option - Grunt_ JavaScript 世界的构建工具 _ Grunt 中文网_files/grunt-logo.png" alt="Grunt logo" width="360" height="424"></span></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="https://www.gruntjs.net/"><i></i><span>首页</span></a></li><li><a href="https://www.gruntjs.net/getting-started"><i class="icon-arrow-right"></i><span>快速入门</span></a></li><li><a href="https://www.gruntjs.net/configuring-tasks"><i class="icon-cog"></i><span>配置任务</span></a></li><li><a href="https://www.gruntjs.net/getting-started"><i class="icon-file-text"></i><span>中文文档</span></a></li><li><a href="https://www.gruntjs.net/plugins"><i class="icon-power-cord"></i><span>插件列表</span></a></li></ul><form class="navbar-search pull-right"><input class="search-query" type="text" placeholder="Search"></form></div><!--.nav-collapse--></div></div></div><div class="content"><div class="container grunt.option"><div class="row-fluid"><div class="span9 page"><div class="hero-unit"><h1>grunt.option</h1><p>Grunt的option API被用来在多个任务之间共享参数、访问命令行中设置的参数。</p>
+<p>一个简单的案例就是为一个目标（target）指定一个用于区别开发期还是过渡期的标志。在命令行中：<code>grunt deploy --target=staging</code> 会让<code>grunt.option('target')</code>返回<code>"staging"</code>。</p>
+<p>下面这个 <code>Gruntfile</code> 案例展示了如何使用 <code>target</code> 选项：</p>
+<pre><code class="lang-js">grunt.initConfig({
+  <span class="hljs-attr">compass</span>: {
+    <span class="hljs-attr">dev</span>: {
+      <span class="hljs-attr">options</span>: {
+        <span class="hljs-comment">/* ... */</span>
+        outputStyle: <span class="hljs-string">'expanded'</span>
+      },
+    },
+    <span class="hljs-attr">staging</span>: {
+      <span class="hljs-attr">options</span>: {
+        <span class="hljs-comment">/* ... */</span>
+        outputStyle: <span class="hljs-string">'compressed'</span>
+      },
+    },
+  },
+});
+<span class="hljs-keyword">var</span> target = grunt.option(<span class="hljs-string">'target'</span>) || <span class="hljs-string">'dev'</span>;
+grunt.registerTask(<span class="hljs-string">'deploy'</span>, [<span class="hljs-string">'compass:'</span> + target]);</code></pre>
+<p>当你执行 <code>grunt deploy</code> 时，你的样式表将默认为<code>dev</code>目标并且输出易于阅读的CSS格式代码。如果你运行 <code>grunt deploy --target=staging</code> ，<code>staging</code>目标会被执行，输出压缩之后的CSS。</p>
+<p><code>grunt.option</code> 还可以在task中使用，如下：</p>
+<pre><code class="lang-js">grunt.registerTask(<span class="hljs-string">'upload'</span>, <span class="hljs-string">'Upload code to specified target.'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">var</span> target = grunt.option(<span class="hljs-string">'target'</span>);
+  <span class="hljs-comment">// do something useful with target here</span>
+});
+grunt.registerTask(<span class="hljs-string">'deploy'</span>, [<span class="hljs-string">'validate'</span>, <span class="hljs-string">'upload'</span>]);</code></pre>
+<p><em>注意，boolean参数可以仅指定key，而省略value。例如，在命令行执行 <code>grunt deploy --staging</code> 将会使 <code>grunt.option('staging')</code> 返回 <code>true</code>。</em></p>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.option#grunt.option" id="grunt.option"></a>grunt.option ☃</h3>
+<p>获取或设置一个选项。</p>
+<pre><code class="lang-js">grunt.option(key[, val])</code></pre>
+<p>boolean类型的选项可以通过在 <code>key</code> 前添加 <code>no-</code> 来取消。案例如下：</p>
+<pre><code class="lang-js">grunt.option(<span class="hljs-string">'staging'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-keyword">var</span> isDev = grunt.option(<span class="hljs-string">'no-staging'</span>);
+<span class="hljs-comment">// isDev === true</span></code></pre>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.option#grunt.option.init" id="grunt.option.init"></a>grunt.option.init</h3>
+<p>初始化 <code>grunt.option</code>。如果省略 <code>initObject</code> ，option将被初始化为一个空对象，否则将被设置为 <code>initObject</code>。</p>
+<pre><code class="lang-js">grunt.option.init([initObject])</code></pre>
+<h3><a class="anchor" href="https://www.gruntjs.net/api/grunt.option#grunt.option.flags" id="grunt.option.flags"></a>grunt.option.flags</h3>
+<p>将所有参数作为命令行参数数组返回。</p>
+<pre><code class="lang-js">grunt.option.flags()</code></pre>
+<div class="end-link">Found an error in the documentation?
+<a href="https://github.com/gruntjs/grunt-docs/issues">File an issue</a>.</div></div></div><div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header"><i class="icon-cog"></i><span>API</span></li><li><a href="https://www.gruntjs.net/api/grunt">grunt</a></li><li><a href="https://www.gruntjs.net/api/grunt.config">grunt.config</a></li><li><a href="https://www.gruntjs.net/api/grunt.event">grunt.event</a></li><li><a href="https://www.gruntjs.net/api/grunt.fail">grunt.fail</a></li><li><a href="https://www.gruntjs.net/api/grunt.file">grunt.file</a></li><li><a href="https://www.gruntjs.net/api/grunt.log">grunt.log</a></li><li><a class="active" href="https://www.gruntjs.net/api/grunt.option">grunt.option</a></li><li><a href="https://www.gruntjs.net/api/grunt.task">grunt.task</a></li><li><a href="https://www.gruntjs.net/api/grunt.template">grunt.template</a></li><li><a href="https://www.gruntjs.net/api/grunt.util">grunt.util</a></li></ul><ul class="nav nav-list"><li class="nav-header"><span>Other</span></li><li><a href="https://www.gruntjs.net/api/inside-tasks">深入任务内幕</a></li><li><a href="https://www.gruntjs.net/api/exit-codes">退出码</a></li></ul></div></div></div></div></div><footer class="grunt-footer"><div class="inner"><div class="container"><ul class="pull-right"><li><a href="https://www.gruntjs.net/blog">博客</a></li><li><a href="https://www.gruntjs.net/upgrading-from-0.3-to-0.4">升级指南</a></li><li><a href="https://www.gruntjs.net/contributing">贡献</a></li><li><a href="https://www.gruntjs.net/development-team">项目组</a></li><li class="social"><a href="https://github.com/gruntjs/" title="Grunt on GitHub"><span class="icon-github"></span></a></li><li class="social"><a href="https://twitter.com/gruntjs/" title="Grunt on Twitter"><span class="icon-twitter"></span></a></li><li class="social"><a href="https://www.gruntjs.net/rss" title="Grunt blog RSS feed"><span class="icon-rss"></span></a></li></ul><ul class="pull-left"><li><a href="http://www.miibeian.gov.cn/" target="_blank"> 冀ICP备14002930号</a></li></ul></div></div><div class="inner"><div class="container"><ul class="pull-right"><li><span>友链：</span></li><li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li><li><a href="https://www.jquery123.com/" target="_blank">jQuery中文文档</a></li><li><a href="https://www.reactjscn.com/" target="_blank">React中文网</a></li><li><a href="https://www.webpackjs.com/" target="_blank">Webpack中文网</a></li><li><a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a></li><li><a href="https://www.parceljs.cn/" target="_blank">Parcel中文网</a></li><li><a href="https://www.sasscss.com/" target="_blank">SASS中文网</a></li><li><a href="https://www.npmjs.com.cn/" target="_blank">NPM中文网</a></li><li><a href="https://www.rollupjs.com/" target="_blank">Rollup中文网</a></li></ul></div></div></footer></body></html>
